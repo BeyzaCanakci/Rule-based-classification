@@ -48,7 +48,7 @@ pd.set_option('display.max_columns', None)
 pd.set_option('display.width', 1000)
 
 # Load data
-df = pd.read_csv("/Users/beyzacanakci/Desktop/miuul/Kural_Tabanlı_Sınıflandırma/persona.csv")
+df = pd.read_csv("Dataset/persona.csv")
 
 # question: How many unique SOURCE?
 df["SOURCE"].nunique()
@@ -62,29 +62,29 @@ df["PRICE"].nunique()
 
 df["COUNTRY"].value_counts()
 
-# Question : What is mean of PRICE depend on the countries? 
+# Question: What is the average of PRICE depending on the countries? 
 
 
 mean_prices = df.groupby("COUNTRY")["PRICE"].mean().reset_index()
 print(mean_prices.to_string(float_format='{:,.2f}'.format))
 
 
-# Question: What is mean of PRICE depend on SOURCE?
+# Question: What is the average of PRICE depend on SOURCE?
 print(df.groupby(by=['SOURCE'])["PRICE"].mean())
 
-# Question 10: What is mean of PRICE group by COUNTRY-SOURCE?
+# Question 10: What is the average of PRICE group by COUNTRY-SOURCE?
 
 df.groupby(['COUNTRY','SOURCE'])["PRICE"].mean()
 
 
-# AIM 2 & 3: What is average PRICE groupby COUNTRY, SOURCE, SEX, AGE.  Group and sort
+# AIM 2 & 3: What is the average PRICE groupby COUNTRY, SOURCE, SEX, AGE.  Group and sort
 agg_df = df.groupby(["COUNTRY", "SOURCE", "SEX", "AGE"]).agg({"PRICE": "mean"}).sort_values("PRICE", ascending=False).reset_index()
 agg_df
 
 ############################################################
 # Task 4: Turn the names in the Index to the variable name.
 ############################################################
-# All variables except PrICE in the output of the third problem are index names.
+# All variables except PRICE in the output of the third problem are index names.
 # Convert these names to variable names.
 # Hint: reset_index ()
 # agg_df.reset_index (inplace = true)
